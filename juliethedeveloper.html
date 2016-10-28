@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Julie Megan Rybarczyk Portfolio</title>
+	<style>
+		#base-00-div {
+	  		background-image: url('dark_jean_00.jpg');
+    		min-height:100%;
+    		min-width:100%;
+    		position: absolute;
+    		padding: 30px;
+		}
+		#base-01-div {
+			background-color: rgba(105, 105, 105, 0.8);
+			color: linen;
+			font-family: 'Cormorant Upright', serif;
+			padding: 20px;
+		}
+		#base-02-div {
+			padding-top: 20px;
+		}
+		.btn-lg {
+  			width: 100%;
+  			height: 70px;
+  			padding: 10px 16px;
+  			line-height: 1.33;
+  			border-radius: 90px;
+  			font-size: 30px !important;
+  			text-shadow: 0px 0px 5px #fff;
+  			color: rgb(66, 65, 68);
+  			margin: 10px;
+		}
+		
+		a:link    {color:pink; background-color:transparent; text-decoration:none}
+		a:visited {color:pink; background-color:transparent; text-decoration:none}
+		a:hover   {color:white; background-color:transparent; text-decoration:underline}
+		a:active  {color:yellow; background-color:transparent; text-decoration:underline}
+		
+		.modal-dialog {
+    		width: 75% !important;
+    		margin: 75px auto !important;
+    		transition: opacity 1s !important;
+		}
+		#my-modal-body {
+			background-image: url('scarf21.jpg');
+			padding: 20px;
+			
+			background-size: 100%;
+		}
+		#modal-inner-body {
+			background-color: rgba(255, 255, 255, .8);
+			padding: 20px;
+		}
+		
+	</style><!-- end style -->
+	
+	
+</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Cormorant+Upright" rel="stylesheet"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+	$( window ).load( function() {
+		$( '#top-00-div' ).hide();
+	});
+	
+	function openButton00() {
+		$( '#top-00-div' ).show();
+	}
+	
+	function close() {
+		$( '#top-00-div' ).hide();
+	}
+	
+	function getContent(content_type) {
+		var header = "";
+		var url = "";
+		
+		switch (content_type) {
+		case "about_me":
+			header = "about me";
+			url = "about_me.html";
+			break;
+		case "about_this_page":
+			header = "about this page";
+			url = "about_this_page.html";
+		default:
+			break;
+		}
+		
+		$( '#modal-header' ).text(header);
+		
+		$.ajax({
+			type: "POST", 
+			url: url,
+			dataType: "text",
+			error: function(xhr, textStatus, errorThrown) {
+				alert("Request Failed."
+					+ "\nxhr: " + xhr
+					+ "\ntext status: " + textStatus
+					+ "\nerror thrown: " + errorThrown
+				);
+			},
+			success: function(result_json) {
+				console.log(result_json);
+				$( '#modal-content' ).html(result_json);
+			}
+		});
+		
+	}
+
+</script>
+  
+</head>
+
+<body>
+<div id="base-00-div" class="container-fluid">
+	
+	<div id="base-01-div" class="container-fluid">
+		<h1 id="name" class="text-right">Julie Megan Rybarczyk</h1>
+		<h3 id="name-description" class="text-right">rybarczyk.julie@gmail.com &#x25CF; <a href="https://github.com/juliemegan">github</a> &#x25CF; <a href="www.linkedin.com/in/julie-rybarczyk">linkedin</a></h3>
+	
+		<div id="base-02-div" class="container-fluid center">
+		
+			<div id="row-1-div" class="row">
+			
+				<div id="left-div" class="container-fluid col-md-offset-1 col-sm-5">
+					<img src="julie10.jpg" class="pull-right">
+				</div> <!-- end left-div -->
+				
+				<div id="right-div" class="container-fluid col-sm-5">
+				
+					<!-- start about-me button -->
+			        <button id="about-me-button" class="btn btn-default btn-lg"
+			        	data-toggle="modal" data-target="#modal00" onClick="getContent('about_me')">
+			        	<p>about me</p>
+					</button> <!-- end about-me button -->
+					
+					<!-- start location button -->
+			        <button id="location-button" class="btn btn-default btn-lg">
+			        	<p>location</p>
+					</button> <!-- end location button -->
+					
+					<!-- start portfolio button -->
+			        <button id="portfolio-button" class="btn btn-default btn-lg">
+			        	<p>portfolio</p>
+					</button> <!-- end portfolio button -->
+					
+					<!-- start about-this-page button -->
+			        <button id="about-this-page-button" class="btn btn-default btn-lg"
+			        	data-toggle="modal" data-target="#modal00" onClick="getContent('about_this_page')">
+			        	<p>about this page</p>
+					</button> <!-- end about-this-page button -->
+				
+				</div> <!-- end right-div -->
+			
+			</div> <!-- end row-1-div -->
+			
+		</div><!-- end base-02-div -->
+        
+	</div><!-- end base-01-div -->
+		
+</div><!-- end base-00-div -->
+
+<div class="modal fade" id="modal00" tabindex="-10" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" id="my-modal-body">
+      	<div id="modal-inner-body">
+	      	<div class="container-fluid">
+	      		<button type="button" class="btn btn-default" data-dismiss="modal">X CLOSE</button>
+	      	</div>
+	      	<div class="container-fluid">
+	      		<br>
+	        	<h4 id="modal-header" class="modal-title"></h4>
+	        	<br>
+	        </div>
+	        <div id="modal-content" class="container-fluid">
+	      	</div>
+	     </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body><!-- end body -->
+
+</html>
